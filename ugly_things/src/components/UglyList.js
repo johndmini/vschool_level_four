@@ -53,7 +53,6 @@ export default function MapUgly() {
                     <Typography variant='subtitle2'>
                         {ugly.description}
                     </Typography>
-                    
                     {toggleEdit && <Box>
                         <FormControl sx={{ display: 'inline-block' }}>
                             <TextField
