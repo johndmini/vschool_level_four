@@ -44,12 +44,12 @@ export default function MapUgly() {
         <Box>
             {uglyList.map(ugly => (
                 <Box key={ugly._id} id={ugly._id} sx={{ textAlign: 'center', mt: '20px' }}>
+                    <Typography variant='h5'>
+                        {ugly.title}
+                    </Typography>
                     <Box>
                         <img src={ugly.imgUrl} alt={ugly.title} />
                     </Box>
-                    <Typography variant='h4'>
-                        {ugly.title}
-                    </Typography>
                     <Typography variant='subtitle2'>
                         {ugly.description}
                     </Typography>
