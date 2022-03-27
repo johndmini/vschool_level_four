@@ -4,18 +4,18 @@ import { Box, Typography, Button, TextField, FormControl } from '@mui/material';
 import { Save, Delete, Edit } from '@mui/icons-material'
 
 export default function MapUgly() {
-    const { uglyList} = useContext(UglyContext);
-    const [toggleEdit, setToggleEdit] = useState(false)
+    const { uglyList } = useContext(UglyContext);
+    const [toggleEdit, setToggleEdit] = useState(null)
     const axios = require('axios');
 
     const [editUgly, setEditUgly] = useState({
         imgUrl: "",
         title: "",
-        description: ""
+        description: "",
     })
 
-    const handleEditToggle = (e) => {
-        setToggleEdit(prevState => !prevState)
+    const handleEditToggle = (id) => {
+        setToggleEdit(prevState => prevState === id ? null : id)
     }
 
     const handleDelete = (e) => {
@@ -31,7 +31,7 @@ export default function MapUgly() {
             return {
                 ...prevUgly,
                 [name]: value
-            }
+            } 
         })
     }
 
@@ -53,7 +53,7 @@ export default function MapUgly() {
                     <Typography variant='subtitle2'>
                         {ugly.description}
                     </Typography>
-                    {toggleEdit && <Box>
+                    {toggleEdit === ugly._id && <Box>
                         <FormControl sx={{ display: 'inline-block' }}>
                             <TextField
                                 name='imgUrl'
@@ -78,8 +78,8 @@ export default function MapUgly() {
                             />
                         </FormControl>
                     </Box>}
-                    {!toggleEdit && <Button startIcon={<Edit/>} variant='contained' onClick={handleEditToggle}>Edit</Button>}
-                    {toggleEdit && <Button startIcon={<Save/>} variant='contained' sx={{ backgroundColor: 'green' }} onClick={handleEditUgly}>Save</Button>}
+                    {!toggleEdit && <Button startIcon={<Edit/>} variant='contained' onClick={() => handleEditToggle(ugly._id)}>Edit</Button>}
+                    {toggleEdit === ugly._id && <Button startIcon={<Save/>} variant='contained' sx={{ backgroundColor: 'green' }} onClick={handleEditUgly}>Save</Button>}
                     <Button startIcon={<Delete/>} variant='contained' sx={{ backgroundColor: 'red' }}onClick={handleDelete}>Delete</Button>
                 </Box>
             ))}
