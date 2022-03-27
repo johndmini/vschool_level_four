@@ -25,7 +25,6 @@ export default function MapUgly() {
     }
 
     const handleChangeUgly = (e) => {
-        console.log(e.target)
         const {name, value} = e.target;
         setEditUgly(prevUgly => {
             return {
@@ -41,21 +40,23 @@ export default function MapUgly() {
     }
 
     return (
-        <Box>
+        <Box >
             {uglyList.map(ugly => (
-                <Box key={ugly._id} id={ugly._id} sx={{ textAlign: 'center', mt: '20px' }}>
+                <Box key={ugly._id} id={ugly._id} sx={{ textAlign: 'center', mt: '20px', display: 'inline-block', m: '10px'}}>
                     <Typography variant='h5'>
                         {ugly.title}
                     </Typography>
                     <Box>
                         <img src={ugly.imgUrl} alt={ugly.title} />
                     </Box>
-                    <Typography variant='subtitle2'>
+                    <Typography sx={{ width: '200px' }}variant='subtitle2'>
                         {ugly.description}
                     </Typography>
                     {toggleEdit === ugly._id && <Box>
                         <FormControl sx={{ display: 'inline-block' }}>
                             <TextField
+                                inputProps={{ maxLength: '1000'}}
+                                helperText={`${editUgly.imgUrl.length}/1000`}
                                 name='imgUrl'
                                 id='outlined-name'
                                 label='IMG URL'
@@ -63,6 +64,8 @@ export default function MapUgly() {
                                 onChange={handleChangeUgly}
                             />
                             <TextField
+                                inputProps={{ maxLength: '20' }}
+                                helperText={`${editUgly.imgUrl.length}/20`}
                                 name='title'
                                 id='outlined-name'
                                 label='TITLE'
@@ -70,6 +73,8 @@ export default function MapUgly() {
                                 onChange={handleChangeUgly}
                             />
                             <TextField
+                                inputProps={{ maxLength: '100' }}
+                                helperText={`${editUgly.description.length}/100`}
                                 name='description'
                                 id='outlined-name'
                                 label='DESCRIPTION'

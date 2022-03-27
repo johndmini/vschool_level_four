@@ -11,7 +11,6 @@ function UglyContextProvider(props) {
     })
 
     const [uglyList, setUglyList] = useState([])
-    console.log(uglyList)
     const handleChange = (e) => {
         const {name, value} = e.target;
         setUglyThings(prevUgly => {
