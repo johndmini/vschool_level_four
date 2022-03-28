@@ -14,13 +14,6 @@ export default function MapUgly() {
         setEditUgly(uglyElement)
         setToggleEdit(prevState => prevState === id ? null : id)
     }
-
-    const handleDelete = (e) => {
-        axios.delete(`https://api.vschool.io/johndaviddelgado/thing/${e.target.parentElement.id}`)
-            .then(res => window.location.reload())
-            .catch(err => console.log(err))
-    }
-
     const handleChangeUgly = (e) => {
         const {name, value} = e.target;
         setEditUgly(prevUgly => {
@@ -31,13 +24,19 @@ export default function MapUgly() {
         })
     }
 
+    const handleDelete = (e) => {
+        axios.delete(`https://api.vschool.io/johndaviddelgado/thing/${e.target.parentElement.id}`)
+            .then(res => window.location.reload())
+            .catch(err => console.log(err))
+    }
+
     const handleEditUgly = (e) => {
         axios.put(`https://api.vschool.io/johndaviddelgado/thing/${e.target.parentElement.id}`, editUgly)
             .then(res => window.location.reload())
     }
 
     return (
-        <Box >
+        <Box sx={{ textAlign: 'center' }}>
             {uglyList.map(ugly => (
                 <Box key={ugly._id} id={ugly._id} sx={{ textAlign: 'center', mt: '20px', display: 'inline-block', m: '10px'}}>
                     <Typography variant='h5'>
