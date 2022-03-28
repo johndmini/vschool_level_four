@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react';
 const UglyContext = React.createContext();
 const axios = require('axios');
 
-function UglyContextProvider(props) {
+const UglyContextProvider = (props) => {
     const [uglyThings, setUglyThings] = useState({
         imgUrl: "",
         title: "",
