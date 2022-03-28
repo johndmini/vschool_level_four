@@ -6,14 +6,9 @@ import { Save, Delete, Edit } from '@mui/icons-material'
 export default function MapUgly() {
     const { uglyList, setUglyList } = useContext(UglyContext);
     const [toggleEdit, setToggleEdit] = useState(null)
-    const axios = require('axios');
     const [editUgly, setEditUgly] = useState()
+    const axios = require('axios');
 
-    const handleEditToggle = (id) => {
-        const uglyElement = uglyList.find(x => x._id === id)
-        setEditUgly(uglyElement)
-        setToggleEdit(prevState => prevState === id ? null : id)
-    }
     const handleChangeUgly = (e) => {
         const {name, value} = e.target;
         setEditUgly(prevUgly => {
@@ -31,8 +26,10 @@ export default function MapUgly() {
     }
 
     const handleEditUgly = (id) => {
+        const uglyElement = uglyList.find(x => x._id === id)
+        setEditUgly(uglyElement)
         axios.put(`https://api.vschool.io/johndaviddelgado/thing/${id}`, editUgly)
-        .then(res => getData())
+            .then(res => getData())
         setToggleEdit(prevState => prevState === id ? null : id)
     }
 
@@ -91,7 +88,7 @@ export default function MapUgly() {
                             />
                         </FormControl>
                     </Box>}
-                    {!toggleEdit && <Button startIcon={<Edit/>} variant='contained' onClick={() => handleEditToggle(ugly._id)}>Edit</Button>}
+                    {!toggleEdit && <Button startIcon={<Edit/>} variant='contained' onClick={() => handleEditUgly(ugly._id)}>Edit</Button>}
                     {toggleEdit === ugly._id && <Button startIcon={<Save/>} variant='contained' sx={{ backgroundColor: 'green' }} onClick={() => handleEditUgly(ugly._id)}>Save</Button>}
                     <Button startIcon={<Delete/>} variant='contained' sx={{ backgroundColor: 'red' }}onClick={() => handleDelete(ugly._id)}>Delete</Button>
                 </Box>
