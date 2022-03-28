@@ -7,14 +7,11 @@ export default function MapUgly() {
     const { uglyList } = useContext(UglyContext);
     const [toggleEdit, setToggleEdit] = useState(null)
     const axios = require('axios');
-
-    const [editUgly, setEditUgly] = useState({
-        imgUrl: "",
-        title: "",
-        description: "",
-    })
+    const [editUgly, setEditUgly] = useState()
 
     const handleEditToggle = (id) => {
+        const uglyElement = uglyList.find(x => x._id === id)
+        setEditUgly(uglyElement)
         setToggleEdit(prevState => prevState === id ? null : id)
     }
 
@@ -47,7 +44,7 @@ export default function MapUgly() {
                         {ugly.title}
                     </Typography>
                     <Box>
-                        <img src={ugly.imgUrl} alt={ugly.title} />
+                        <img width={'200px'} src={ugly.imgUrl} alt={ugly.title} />
                     </Box>
                     <Typography sx={{ width: '200px' }}variant='subtitle2'>
                         {ugly.description}
@@ -55,6 +52,8 @@ export default function MapUgly() {
                     {toggleEdit === ugly._id && <Box>
                         <FormControl sx={{ display: 'inline-block' }}>
                             <TextField
+                                fullWidth
+                                required
                                 inputProps={{ maxLength: '1000'}}
                                 helperText={`${editUgly.imgUrl.length}/1000`}
                                 name='imgUrl'
@@ -64,8 +63,10 @@ export default function MapUgly() {
                                 onChange={handleChangeUgly}
                             />
                             <TextField
+                                fullWidth
+                                required
                                 inputProps={{ maxLength: '20' }}
-                                helperText={`${editUgly.imgUrl.length}/20`}
+                                helperText={`${editUgly.title.length}/20`}
                                 name='title'
                                 id='outlined-name'
                                 label='TITLE'
@@ -73,6 +74,8 @@ export default function MapUgly() {
                                 onChange={handleChangeUgly}
                             />
                             <TextField
+                                fullWidth
+                                required
                                 inputProps={{ maxLength: '100' }}
                                 helperText={`${editUgly.description.length}/100`}
                                 name='description'

@@ -12,6 +12,7 @@ export default function Form() {
             <Box sx={{ textAlign: 'center', mt: '20px' }}>
                 <TextField 
                     fullWidth
+                    required
                     inputProps={{ maxLength: '1000'}}
                     helperText={`${uglyThings.imgUrl.length}/1000`}
                     name='imgUrl'
@@ -21,6 +22,7 @@ export default function Form() {
                     onChange={handleChange}/>
                 <TextField
                     fullWidth
+                    required
                     inputProps={{ maxLength: '50' }}
                     helperText={`${uglyThings.title.length}/50`}
                     name='title'
@@ -30,6 +32,7 @@ export default function Form() {
                     onChange={handleChange}/>
                 <TextField
                     fullWidth
+                    required
                     inputProps={{ maxLength: '100' }}
                     helperText={`${uglyThings.description.length}/100`}
                     name='description'
@@ -37,7 +40,7 @@ export default function Form() {
                     label='DESCRIPTION'
                     value={uglyThings.description}
                     onChange={handleChange}/>
-                <Button startIcon={<PublishIcon/>} variant='contained' onClick={addUglyThing} sx={{ height: '55px', mt: '10px;' }}>Submit Ugly</Button>   
+                <Button startIcon={<PublishIcon/>} variant='contained' onClick={addUglyThing} sx={{ height: '55px', mt: '10px;' }}>Submit</Button>   
             </Box>
         </Box>
     )
