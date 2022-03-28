@@ -4,7 +4,7 @@ import { Box, Typography, Button, TextField, FormControl } from '@mui/material';
 import { Save, Delete, Edit } from '@mui/icons-material'
 
 export default function MapUgly() {
-    const { uglyList } = useContext(UglyContext);
+    const { uglyList, setUglyList } = useContext(UglyContext);
     const [toggleEdit, setToggleEdit] = useState(null)
     const axios = require('axios');
     const [editUgly, setEditUgly] = useState()
@@ -24,15 +24,21 @@ export default function MapUgly() {
         })
     }
 
-    const handleDelete = (e) => {
-        axios.delete(`https://api.vschool.io/johndaviddelgado/thing/${e.target.parentElement.id}`)
-            .then(res => window.location.reload())
+    const handleDelete = (id) => {
+        axios.delete(`https://api.vschool.io/johndaviddelgado/thing/${id}`)
+            .then(res => getData())
             .catch(err => console.log(err))
     }
 
-    const handleEditUgly = (e) => {
-        axios.put(`https://api.vschool.io/johndaviddelgado/thing/${e.target.parentElement.id}`, editUgly)
-            .then(res => window.location.reload())
+    const handleEditUgly = (id) => {
+        axios.put(`https://api.vschool.io/johndaviddelgado/thing/${id}`, editUgly)
+        .then(res => getData())
+        setToggleEdit(prevState => prevState === id ? null : id)
+    }
+
+    const getData = () => {
+        axios.get('https://api.vschool.io/johndaviddelgado/thing')
+            .then(res => setUglyList(res.data))
     }
 
     return (
@@ -86,8 +92,8 @@ export default function MapUgly() {
                         </FormControl>
                     </Box>}
                     {!toggleEdit && <Button startIcon={<Edit/>} variant='contained' onClick={() => handleEditToggle(ugly._id)}>Edit</Button>}
-                    {toggleEdit === ugly._id && <Button startIcon={<Save/>} variant='contained' sx={{ backgroundColor: 'green' }} onClick={handleEditUgly}>Save</Button>}
-                    <Button startIcon={<Delete/>} variant='contained' sx={{ backgroundColor: 'red' }}onClick={handleDelete}>Delete</Button>
+                    {toggleEdit === ugly._id && <Button startIcon={<Save/>} variant='contained' sx={{ backgroundColor: 'green' }} onClick={() => handleEditUgly(ugly._id)}>Save</Button>}
+                    <Button startIcon={<Delete/>} variant='contained' sx={{ backgroundColor: 'red' }}onClick={() => handleDelete(ugly._id)}>Delete</Button>
                 </Box>
             ))}
         </Box>

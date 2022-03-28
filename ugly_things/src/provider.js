@@ -23,20 +23,19 @@ function UglyContextProvider(props) {
 
     const addUglyThing = () => {
         axios.post('https://api.vschool.io/johndaviddelgado/thing', uglyThings)
-            .then(res => window.location.reload())
+            .then(res => setUglyThings({
+                imgUrl: "",
+                title: "",
+                description: ""
+            }))
             .catch(err => console.log(err))
-        setUglyThings({
-            imgUrl: "",
-            title: "",
-            description: ""
-        })
     }
 
     useEffect(() => {
         axios.get('https://api.vschool.io/johndaviddelgado/thing')
             .then(res => setUglyList(res.data))
             .catch(err => console.log(err))
-    }, [uglyList.length])
+    }, [uglyThings])
 
     return(
         <UglyContext.Provider value={{
