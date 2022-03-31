@@ -29,7 +29,6 @@ export default function CoinPrice() {
               </Box>
               <Box sx={{ width: '100px' }}>
                 <Typography color="white" variant="subtitle2">
-                  ${' '}
                   {coin.current_price.toLocaleString('en-US', {
                     maximumFractionDigits: 10,
                   })}
@@ -85,7 +84,6 @@ export default function CoinPrice() {
               <u>Market Cap</u>
             </Typography>
             <Typography color="white" variant="subtitle2" sx={{ mb: '5px' }}>
-              ${' '}
               {coin.market_cap.toLocaleString('en-US', {
                 maximumFractionDigits: 10,
               })}
@@ -94,7 +92,6 @@ export default function CoinPrice() {
               <u>24hr Volume</u>
             </Typography>
             <Typography color="white" variant="subtitle2">
-              ${' '}
               {coin.total_volume.toLocaleString('en-US', {
                 maximumFractionDigits: 10,
               })}
@@ -109,7 +106,6 @@ export default function CoinPrice() {
               variant="subtitle2"
               sx={{ mb: '5px' }}
             >
-              ${' '}
               {coin.price_change_24h.toLocaleString('en-US', {
                 maximumFractionDigits: 10,
               })}

@@ -11,6 +11,7 @@ const CoinDataProvider = (props) => {
   const [showGraph, setShowGraph] = useState(true);
   const [searchResults, setSearchResults] = useState({});
   const [targetToken, setTargetToken] = useState({});
+  const [trending, setTrending] = useState({});
   const { coins } = searchResults;
 
   const getData = () => {
@@ -33,6 +34,12 @@ const CoinDataProvider = (props) => {
       )
       .then((res) => setTargetToken(res.data));
   };
+
+  useEffect(() => {
+    axios
+      .get(`${baseUrl}/search/trending`)
+      .then((res) => setTrending(res.data));
+  }, []);
 
   useEffect(() => {
     axios
@@ -81,6 +88,7 @@ const CoinDataProvider = (props) => {
         listPage,
         showGraph,
         targetToken,
+        trending,
         searchTokens,
         handleGraph,
         handlePagination,

@@ -6,9 +6,9 @@ export default function TargetToken() {
   const { targetToken } = useContext(CoinDataContext);
 
   return (
-    <Box>
+    <Box sx={{ m: '10px' }}>
       {Object.keys(targetToken).map((token) => (
-        <Box key={token.name}>
+        <Box key={token.id}>
           <Box>
             <Typography color="white" variant="subtitle2">
               {token} :{' '}
