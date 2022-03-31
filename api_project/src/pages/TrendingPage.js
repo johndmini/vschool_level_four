@@ -4,7 +4,6 @@ import { CoinDataContext } from 'CEXData/provider.js';
 
 export default function Trending() {
   const { trending } = useContext(CoinDataContext);
-  console.log(trending.coins);
 
   return (
     <Box sx={{ m: '15px' }}>
@@ -19,6 +18,7 @@ export default function Trending() {
             </Box>
             <Box>
               <Typography color="white">
+                ${' '}
                 {Number(coin.item.price_btc).toLocaleString('en-US', {
                   maximumFractionDigits: 10,
                 })}
