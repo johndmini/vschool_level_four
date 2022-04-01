@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Switch } from '@mui/material';
-import { CoinDataContext } from '../CEXData/provider';
+import { CoinDataContext } from './provider';
 import {
   Box,
   Typography,

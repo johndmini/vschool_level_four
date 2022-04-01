@@ -18,9 +18,11 @@ export default function Nav() {
       }}
     >
       <ButtonGroup variant="contained" sx={{ mr: 'auto' }}>
-        <Button>Home</Button>
-        <Button component={Link} to="/CEXCurrency">
+        <Button component={Link} to="/">
           Coins
+        </Button>
+        <Button component={Link} to="/DeFiData">
+          DeFi Tokens
         </Button>
         <Button component={Link} to="/Trending">
           Trending Coins

@@ -1,6 +1,7 @@
 import React from 'react';
 import Nav from './components/Nav';
 import CEXCurrency from './pages/CEXCurrency';
+import DefiData from 'DeFIData/DeFiData.js';
 import Trending from './pages/TrendingPage';
 import SearchedToken from './pages/SearchResultsPage';
 import TargetToken from './CEXData/TargetTokenInfo';
@@ -15,7 +16,8 @@ export default function App() {
       <CoinDataProvider>
         <Nav />
         <Routes>
-          <Route path="/CEXCurrency" element={<CEXCurrency />} />
+          <Route path="/" element={<CEXCurrency />} />
+          <Route path="/DeFiData" element={<DefiData />} />
           <Route path="/Trending" element={<Trending />} />
           <Route path="/SearchedToken" element={<SearchedToken />} />
           <Route path="/TargetToken" element={<TargetToken />} />

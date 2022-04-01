@@ -1,5 +1,5 @@
 import React from 'react';
-import FunctionsBar from '../components/FunctionsBar';
+import FunctionsBar from '../CEXData/FunctionsBar';
 import CoinPrice from '../CEXData/CoinPrice';
 import { CoinDataProvider } from '../CEXData/provider';
 import { Box } from '@mui/material';
